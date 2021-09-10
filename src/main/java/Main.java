@@ -1,9 +1,8 @@
 public class Main {
 
 
-    static void main(String[] args){
+    public static void main(String[] args) throws Exception {
         PDFToXML converter = new PDFToXML();
-        converter.convertToXml()
-
+        String xmlFile = converter.convertToXml("Data/wpss87-framsida-pdf.pdf");
     }
 }

@@ -1,7 +1,6 @@
 import org.apache.commons.lang3.SystemUtils;
 
 import java.io.*;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -11,19 +10,11 @@ public class PDFToXML {
     private static Logger LOG = Logger.getLogger(PDFToXML.class.getName());
 
     public PDFToXML(){
+        tempDir = "tempDir";
         File directory = new File(tempDir);
         if(!directory.exists()){
             directory.mkdir();
         }
-    }
-
-    public boolean extractXmlFromPdf(List<String> listOfFoundFiles) throws Exception{
-        for (String file : listOfFoundFiles){
-            String xmlPath = convertToXml(file);
-            File xmlFile = new File(xmlPath);
-            formatXmlFile(xmlFile);
-        }
-        return true;
     }
 
     public String convertToXml(String pdfFilePath) throws Exception {
@@ -48,6 +39,8 @@ public class PDFToXML {
         } catch (InterruptedException e) {
             System.exit(1); // TODO: Check how to handle this properly
         }
+        File xmlFile = new File(xmlFilePath);
+        this.formatXmlFile(xmlFile);
         return xmlFilePath;
     }
 
